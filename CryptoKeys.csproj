@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>svgc</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>crypto-keys</PackageId>
+    <Authors>LordLyng</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine.Experimental" Version="0.3.0-alpha.19577.1" />
+  </ItemGroup>
+
+</Project>
