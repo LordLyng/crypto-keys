@@ -11,8 +11,8 @@ namespace CryptoKeys
         {
             var command = new RootCommand
             {
-                new Option(new[] {"--only-iv", "-iv"}) {Argument = new Argument<bool>(() => false), Description = "Only prints an Initialization vector", Required = false},
-                new Option(new[] {"--only-key", "-key"}) {Argument = new Argument<bool>(() => false), Description = "Only prints a Key", Required = false},
+                new Option(new[] {"--only-iv", "-iv"}) {Argument = new Argument<bool>(() => false), Description = "Only prints an Initialization vector", IsRequired = false},
+                new Option(new[] {"--only-key", "-key"}) {Argument = new Argument<bool>(() => false), Description = "Only prints a Key", IsRequired = false},
             };
 
             command.Description = "Generates Initialization vectors and cryptograpic keys using AES";
