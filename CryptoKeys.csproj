@@ -9,9 +9,16 @@
     <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
+  <!--Nuget related properties-->
   <PropertyGroup>
     <PackageId>crypto-keys</PackageId>
     <Authors>LordLyng</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/LordLyng/crypto-keys</RepositoryUrl>
+    <RepositoryBranch>main</RepositoryBranch>
+    <Title>Crypto Keys</Title>
+    <Description>A simple .net core global tool to create cryptographic nonces in Base64 format using the AES Cryptographic provider</Description>
+    <PackageTags>AES;Crypto;Key;IV;Encryption</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
