@@ -2,7 +2,8 @@ name: .NET Core
 
 on:
   push:
-    branches: [main]
+    tags:
+      - v*
 
 jobs:
   build:
@@ -14,28 +15,14 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.301
+      - name: Get Version
+        id: get_version
+        uses: battila7/get-version-action@v2
       - name: Install dependencies
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
       - name: Pack
-        run: dotnet pack --no-build -c Release CryptoKeys.csproj -o .
+        run: dotnet pack --no-build -c Release CryptoKeys.csproj -o . -p:PackageVersion=${{ steps.get_version.outputs.version-without-v }}
       - name: Publish NuGet
         run: dotnet nuget push *.nupkg -s https://f.feedz.io/it-minds/tools/nuget/index.json -k ${{ secrets.FEEDZ_API_KEY }} --skip-duplicate -n 1
-      - name: Read Project File
-        id: project
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./CryptoKeys.csproj
-      - name: Extract Version
-        id: version
-        uses: AsasInnab/regex-action@v1
-        with:
-          regex_pattern: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
-          regex_flags: "m"
-          search_string: ${{ steps.project.outputs.content }}
-      - name: Tag
-        uses: tvdias/github-tagger@v0.0.1
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: "v${{ steps.version.outputs.first_match }}"
