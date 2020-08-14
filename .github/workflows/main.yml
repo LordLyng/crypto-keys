@@ -21,7 +21,7 @@ jobs:
       - name: Pack
         run: dotnet pack --no-build -c Release CryptoKeys.csproj -o .
       - name: Publish NuGet
-        run: dotnet nuget push *.nupkg -s https://f.feedz.io/it-minds/tools/nuget/index.json -k $FEEDZ_API_KEY --skip-duplicate -n 1
+        run: dotnet nuget push *.nupkg -s https://f.feedz.io/it-minds/tools/nuget/index.json -k ${{ secrets.FEEDZ_API_KEY }} --skip-duplicate -n 1
       - name: Read Project File
         id: project
         uses: juliangruber/read-file-action@v1
