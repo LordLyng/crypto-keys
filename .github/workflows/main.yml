@@ -35,4 +35,7 @@ jobs:
           regex_flags: "m"
           search_string: ${{ steps.project.outputs.content }}
       - name: Tag
-        run: git tag v${{ steps.version.outputs.first_match }} && git push v${{ steps.version.outputs.first_match }}
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: "v${{ steps.version.outputs.first_match }}"
